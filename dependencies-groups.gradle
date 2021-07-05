@@ -1,0 +1,97 @@
+def Group(Closure closure) {
+  closure.delegate = dependencies
+  return closure
+}
+
+ext {
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////
+  // KOTLIN                                                                                     //
+  ////////////////////////////////////////////////////////////////////////////////////////////////
+
+  kotlin = Group {
+    api deps.kotlin.lib
+    api deps.kotlin.reflect
+  }
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////
+  // DEBUGGING                                                                                  //
+  ////////////////////////////////////////////////////////////////////////////////////////////////
+
+  debugging = Group {
+    implementation deps.timber
+  }
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////
+  // DAGGER2                                                                                     //
+  ////////////////////////////////////////////////////////////////////////////////////////////////
+
+  dagger = Group {
+    implementation deps.dagger.dagger
+    kapt deps.dagger.compiler
+  }
+  ////////////////////////////////////////////////////////////////////////////////////////////////
+  // Room                                                                                 //
+  ////////////////////////////////////////////////////////////////////////////////////////////////
+
+  room = Group {
+    api deps.room.common
+    api deps.room.runtime
+    kapt deps.room.compiler
+    api deps.room.ktx
+    api deps.room.rx
+    testImplementation deps.room.test
+  }
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////
+  // NETWORKING                                                                                 //
+  ////////////////////////////////////////////////////////////////////////////////////////////////
+
+  networking = Group {
+    api deps.retrofit.retrofit
+    api deps.retrofit.adapters
+    api deps.retrofit.gson
+    api deps.okHttp.okHttp
+    api deps.okHttp.logging
+    implementation(deps.okHttp.prettyLogger) {
+      exclude group: 'org.json', module: 'json'
+    }
+  }
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////
+  // RX                                                                                         //
+  ////////////////////////////////////////////////////////////////////////////////////////////////
+
+  rx = Group {
+    api deps.rx.android
+    api deps.rx.kotlin
+  }
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////
+  // VIEW                                                                                       //
+  ////////////////////////////////////////////////////////////////////////////////////////////////
+
+  view = Group {
+    implementation deps.support.constraint
+    implementation deps.support.materialDesign
+    implementation deps.rx.rxbinding
+    implementation deps.navigation.navigationFragment
+    implementation deps.navigation.navigationUi
+    implementation deps.navigation.dynamic
+  }
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////
+  // TESTING                                                                                    //
+  ////////////////////////////////////////////////////////////////////////////////////////////////
+
+  testing = Group {
+    testImplementation deps.jUnit
+    testImplementation deps.mockito.core
+    testImplementation deps.mockito.inline
+    testImplementation deps.mockito.kotlin
+
+    androidTestImplementation deps.androidxJunit
+    androidTestImplementation deps.mockito.android
+    androidTestImplementation deps.espresso.core
+  }
+}

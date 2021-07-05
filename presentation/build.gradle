@@ -1,0 +1,40 @@
+apply plugin: 'com.android.application'
+apply from: '../config-android.gradle'
+apply from: '../config-properties.gradle'
+
+android {
+  compileSdkVersion 30
+
+  buildTypes {
+    release {
+      shrinkResources true
+    }
+
+    staging {
+      applicationIdSuffix '.staging'
+      versionNameSuffix '-Staging'
+    }
+
+    debug {
+      applicationIdSuffix '.debug'
+      versionNameSuffix '-DEBUG'
+    }
+  }
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+  kotlinOptions {
+    jvmTarget = '1.8'
+  }
+}
+
+dependencies {
+  implementation project(':domain')
+  implementation project(':data')
+  kotlin()
+  view()
+  dagger()
+  debugging()
+  testing()
+}
