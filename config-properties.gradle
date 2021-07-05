@@ -6,29 +6,12 @@ android {
   buildTypes {
     release {
       minifyEnabled true
-      debuggable false
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-
-      ndk {
-        debugSymbolLevel 'FULL'
-      }
-
-    }
-
-    reBug {
-      debuggable true
-
-    }
-
-    staging {
-      debuggable true
-      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-
-      matchingFallbacks = ['release', 'debug']
     }
 
     debug {
-      debuggable true
+      buildConfigField("String",  "BASE_URL", "\"${weather_base_url}\"")
+      buildConfigField("String",  "API_KEY", "\"${weather_api_key}\"")
     }
   }
 
