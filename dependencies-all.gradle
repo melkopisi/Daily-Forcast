@@ -51,6 +51,11 @@ ext.deps = [
         'adapters': "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit",
         'gson': "com.squareup.retrofit2:converter-gson:$versions.retrofit",
     ],
+    'okHttp': [
+        'okHttp': "com.squareup.okhttp3:okhttp:$versions.okHttp",
+        'mockwebserver': "com.squareup.okhttp3:mockwebserver:$versions.okHttp",
+        'prettyLogger': "com.github.ihsanbal:LoggingInterceptor:$versions.prettyLogger",
+    ],
 
     ////////////////////////////////////////////////////////////////////////////////////////////
     // DEBUG                                                                                  //

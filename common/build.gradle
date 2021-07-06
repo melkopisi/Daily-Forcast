@@ -3,13 +3,5 @@ apply from: '../config-android.gradle'
 apply from: '../config-properties.gradle'
 
 dependencies {
-  implementation project(':common')
-  implementation project(':domain')
-  kotlin()
-  rx()
-  room()
   dagger()
-  debugging()
-  testing()
-  networking()
 }

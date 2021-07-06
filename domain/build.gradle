@@ -3,6 +3,7 @@ apply from: '../config-android.gradle'
 apply from: '../config-properties.gradle'
 
 dependencies {
+  implementation project(':common')
   kotlin()
   rx()
   dagger()

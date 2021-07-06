@@ -1,4 +1,4 @@
-package com.melkopisi.dailyforcast.di.application.scope
+package com.melkopisi.common.di.application.scope
 
 import javax.inject.Scope
 

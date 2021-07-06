@@ -52,7 +52,6 @@ ext {
     api deps.retrofit.adapters
     api deps.retrofit.gson
     api deps.okHttp.okHttp
-    api deps.okHttp.logging
     implementation(deps.okHttp.prettyLogger) {
       exclude group: 'org.json', module: 'json'
     }
