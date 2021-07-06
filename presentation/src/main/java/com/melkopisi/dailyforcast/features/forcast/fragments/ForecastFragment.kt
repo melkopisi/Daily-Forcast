@@ -4,14 +4,25 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.melkopisi.dailyforcast.App
 import com.melkopisi.dailyforcast.databinding.FragmentForecastBinding
 import com.melkopisi.dailyforcast.di.presentation.fragment.FragmentSubComponent
+import com.melkopisi.dailyforcast.di.presentation.viewmodel.ViewModelFactoryProvider
+import com.melkopisi.dailyforcast.features.forcast.models.DailyForecastUiModel
+import com.melkopisi.dailyforcast.features.forcast.viewmodels.ForecastViewModel
+import com.melkopisi.dailyforcast.general.Resource
+import com.melkopisi.dailyforcast.general.ResourceState
+import timber.log.Timber
 import javax.inject.Inject
 
 class ForecastFragment : Fragment() {
   @Inject lateinit var fragmentForecastBinding: FragmentForecastBinding
+  @Inject lateinit var viewModelFactoryProvider: ViewModelFactoryProvider
+
+  private val viewModel: ForecastViewModel by viewModels { viewModelFactoryProvider }
 
   private val fragmentSubComponent: FragmentSubComponent by lazy {
     ((requireActivity().applicationContext) as App).appComponent.getFragmentSubComponent()
@@ -27,11 +38,30 @@ class ForecastFragment : Fragment() {
     inflater: LayoutInflater,
     container: ViewGroup?,
     savedInstanceState: Bundle?
-  ): View? {
+  ): View {
     return fragmentForecastBinding.root
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
+    setupObservers()
+    viewModel.getDailyForecast("cairo")
+  }
+
+  private fun setupObservers() {
+    viewModel.getDailyForecastLiveData.observe(viewLifecycleOwner, this::getDailyForecastObserver)
+  }
+
+  private fun getDailyForecastObserver(result: Resource<List<DailyForecastUiModel.Forecast>>) {
+    when (result.state) {
+      ResourceState.LOADING -> {
+      }
+      ResourceState.SUCCESS -> {
+        Timber.d("daily forecast is %s", result.data?.get(0)?.weather?.first()?.main)
+      }
+      ResourceState.ERROR -> {
+        Toast.makeText(requireContext(), getString(result.id), Toast.LENGTH_SHORT).show()
+      }
+    }
   }
 }

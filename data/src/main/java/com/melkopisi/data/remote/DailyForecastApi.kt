@@ -11,8 +11,8 @@ private object Forecast{
 interface DailyForecastApi {
   @GET(Forecast.DAILY_FORECAST_API)
   fun getDailyForecast(
-    @Query("q") cityName: String,
-    @Query("appid") appId: String
+    @Query("appid") appId: String,
+    @Query("q") cityName: String
   ): Single<DailyForecastRemote>
 
 

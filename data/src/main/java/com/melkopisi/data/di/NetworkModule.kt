@@ -22,10 +22,6 @@ class NetworkModule {
   @ApplicationScope fun providesGson(): Gson = GsonBuilder().setLenient().create()
 
   @Provides
-  @ApplicationScope fun providesInterceptor(): LoggingInterceptor =
-    LoggingInterceptor.Builder().setLevel(Level.BASIC).log(Log.VERBOSE).build()
-
-  @Provides
   @ApplicationScope fun providesRetrofit(okHttpClient: OkHttpClient): Retrofit {
     return Retrofit.Builder()
       .baseUrl(BuildConfig.BASE_URL)
@@ -36,12 +32,12 @@ class NetworkModule {
   }
 
   @Provides
-  @ApplicationScope fun providesOkHttpClient(interceptor: LoggingInterceptor): OkHttpClient {
+  @ApplicationScope fun providesOkHttpClient(): OkHttpClient {
     return OkHttpClient.Builder()
       .connectTimeout(60, TimeUnit.SECONDS)
       .readTimeout(60, TimeUnit.SECONDS)
       .writeTimeout(60, TimeUnit.SECONDS)
-      .addInterceptor(interceptor)
+      .addInterceptor(LoggingInterceptor.Builder().setLevel(Level.BASIC).log(Log.VERBOSE).build())
       .build()
   }
 

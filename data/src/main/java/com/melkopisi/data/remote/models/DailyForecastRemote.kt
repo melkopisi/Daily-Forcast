@@ -10,22 +10,22 @@ data class DailyForecastRemote(
     val cod: String,
     @SerializedName("message")
     val message: Int,
-    @SerializedName("cnt")
-    val cnt: Int,
+/*    @SerializedName("cnt")
+    val cnt: Int,*/
     @SerializedName("list")
     val list: List<Forecast>,
-    @SerializedName("city")
-    val city: City
+   /* @SerializedName("city")
+    val city: City*/
 ) {
     @Keep
     data class Forecast (
-        @SerializedName("dt")
+    /*    @SerializedName("dt")
         val dt: Int,
         @SerializedName("main")
-        val main: Main,
+        val main: Main,*/
         @SerializedName("weather")
         val weather: List<Weather>,
-        @SerializedName("clouds")
+     /*   @SerializedName("clouds")
         val clouds: Clouds,
         @SerializedName("wind")
         val wind: Wind,
@@ -36,9 +36,9 @@ data class DailyForecastRemote(
         @SerializedName("sys")
         val sys: Sys,
         @SerializedName("dt_txt")
-        val dtTxt: String
+        val dtTxt: String*/
     ) {
-        @Keep
+     /*   @Keep
         data class Main(
             @SerializedName("temp")
             val temp: Double,
@@ -58,7 +58,7 @@ data class DailyForecastRemote(
             val humidity: Int,
             @SerializedName("temp_kf")
             val tempKf: Double
-        )
+        )*/
 
         @Keep
         data class Weather(
@@ -68,17 +68,17 @@ data class DailyForecastRemote(
             val main: String,
             @SerializedName("description")
             val description: String,
-            @SerializedName("icon")
-            val icon: String
+           /* @SerializedName("icon")
+            val icon: String*/
         )
 
-        @Keep
+      /*  @Keep
         data class Clouds(
             @SerializedName("all")
             val all: Int
-        )
+        )*/
 
-        @Keep
+        /*@Keep
         data class Wind(
             @SerializedName("speed")
             val speed: Double,
@@ -86,16 +86,16 @@ data class DailyForecastRemote(
             val deg: Int,
             @SerializedName("gust")
             val gust: Double
-        )
+        )*/
 
-        @Keep
+   /*     @Keep
         data class Sys(
             @SerializedName("pod")
             val pod: String
-        )
+        )*/
     }
 
-    @Keep
+   /* @Keep
     data class City(
         @SerializedName("id")
         val id: Int,
@@ -121,5 +121,5 @@ data class DailyForecastRemote(
             @SerializedName("lon")
             val lon: Double
         )
-    }
+    }*/
 }

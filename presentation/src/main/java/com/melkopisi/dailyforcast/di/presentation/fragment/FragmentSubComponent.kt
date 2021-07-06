@@ -17,6 +17,6 @@ interface FragmentSubComponent {
 
   @Subcomponent.Factory
   interface Factory {
-    fun create(@BindsInstance application: Context): FragmentSubComponent
+    fun create(@BindsInstance context: Context): FragmentSubComponent
   }
 }
