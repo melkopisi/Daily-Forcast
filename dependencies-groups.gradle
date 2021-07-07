@@ -88,6 +88,8 @@ ext {
     testImplementation deps.mockito.core
     testImplementation deps.mockito.inline
     testImplementation deps.mockito.kotlin
+    testImplementation deps.mockwebserver
+    testImplementation deps.archCoreTest
 
     androidTestImplementation deps.androidxJunit
     androidTestImplementation deps.mockito.android
