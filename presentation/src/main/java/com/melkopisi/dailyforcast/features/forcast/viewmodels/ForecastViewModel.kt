@@ -9,8 +9,10 @@ import com.melkopisi.dailyforcast.general.BaseViewModel
 import com.melkopisi.dailyforcast.general.Resource
 import com.melkopisi.dailyforcast.general.extensions.setError
 import com.melkopisi.dailyforcast.general.extensions.setLoading
+import com.melkopisi.dailyforcast.general.extensions.setLocalSuccess
 import com.melkopisi.dailyforcast.general.extensions.setSuccess
 import com.melkopisi.domain.exceptions.NoDataException
+import com.melkopisi.domain.exceptions.NoRemoteDataException
 import com.melkopisi.domain.usecases.GetDailyForecastUseCase
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -37,7 +39,15 @@ class ForecastViewModel @Inject constructor(
           }
         )
       }, { throwable ->
-        _getDailyForecastLiveData.setError(mapError(throwable))
+        if (throwable is NoRemoteDataException) {
+          if ((throwable.data as List<*>).isNullOrEmpty().not()) {
+            _getDailyForecastLiveData.setLocalSuccess(throwable.data as List<DailyForecastUiModel.Forecast>)
+          } else {
+            _getDailyForecastLiveData.setError(R.string.no_data_error)
+          }
+        } else {
+          _getDailyForecastLiveData.setError(mapError(throwable))
+        }
       }).addDisposable()
   }
 

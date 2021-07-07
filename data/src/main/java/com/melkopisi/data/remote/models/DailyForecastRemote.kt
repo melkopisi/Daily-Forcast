@@ -8,8 +8,8 @@ import androidx.annotation.Keep
 data class DailyForecastRemote(
     @SerializedName("cod")
     val cod: String,
-    @SerializedName("message")
-    val message: Int,
+ /*   @SerializedName("message")
+    val message: Int,*/
 /*    @SerializedName("cnt")
     val cnt: Int,*/
     @SerializedName("list")
