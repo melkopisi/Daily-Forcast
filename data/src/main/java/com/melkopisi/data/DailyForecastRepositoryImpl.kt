@@ -17,7 +17,7 @@ class DailyForecastRepositoryImpl @Inject constructor(
   private val remote: DailyForecastApi,
   private val local: ForecastDao
 ) : DailyForecastRepository {
-  override fun getDailyForecast(cityName: String): Single<List<DailyForecastModel.Forecast>> {
+  override fun getDailyForecast(cityName: String): Single<DailyForecastModel> {
     return remote.getDailyForecast(BuildConfig.API_KEY, cityName)
       .flatMap {
         if (it.cod != "200") {
@@ -25,15 +25,13 @@ class DailyForecastRepositoryImpl @Inject constructor(
         } else {
           Completable.fromCallable {
             local.saveForecast(it.mapToDailyForecastEntity())
-          }.andThen(Single.just(it.list.map { forecast ->
-            forecast.mapToDailyForecastModel()
-          }))
+          }.andThen(Single.just(it.mapToDailyForecastModel()))
         }
       }.onErrorResumeNext {
-        Single.error(
-          NoRemoteDataException(
-            local.getForecast().map { it.mapToDailyForecastModel() })
-        )
+        local.getForecast().flatMap {
+          val forecastList = it.mapToDailyForecastModel()
+          Single.error(NoRemoteDataException(forecastList))
+        }
       }
   }
 }

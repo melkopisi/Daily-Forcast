@@ -8,6 +8,6 @@ import javax.inject.Inject
 
 class GetDailyForecastUseCase @Inject constructor(private val dailyForecastRepository: DailyForecastRepository) {
 
-  operator fun invoke(cityName: String): Single<List<DailyForecastModel.Forecast>> =
+  operator fun invoke(cityName: String): Single<DailyForecastModel> =
     dailyForecastRepository.getDailyForecast(cityName)
 }

@@ -7,7 +7,7 @@
 
   <fragment
     android:id="@+id/forecastFragment"
-    tools:layout="@layout/fragment_forecast"
-    android:name="com.melkopisi.dailyforcast.features.forcast.fragments.ForecastFragment"
-    android:label="ForecastFragment" />
+    tools:layout="@layout/fragment_forecast_list"
+    android:name="com.melkopisi.dailyforcast.features.forcast.fragments.ForecastListFragment"
+    android:label="ForecastListFragment" />
 </navigation>

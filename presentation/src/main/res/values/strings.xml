@@ -1,7 +1,10 @@
 <resources>
   <string name="app_name">Daily Forecast</string>
+
+  <string name="retry">Retry</string>
   <!--  errors-->
   <string name="no_data_error">No Data Found</string>
   <string name="network_error">No Network</string>
-  <string name="general_error">Something wrong, check network!</string>
+  <string name="general_error">No Data Found, check network!</string>
+
 </resources>

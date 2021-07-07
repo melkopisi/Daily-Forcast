@@ -10,7 +10,6 @@ buildscript {
 
     classpath deps.build.gradle
     classpath deps.build.kotlin
-    classpath deps.build.navSafeArgs
   }
 }
 

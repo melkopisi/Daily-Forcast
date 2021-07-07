@@ -1,7 +1,6 @@
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-parcelize'
 apply plugin: 'kotlin-kapt'
-apply plugin: "androidx.navigation.safeargs.kotlin"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // COMMON ANDROID CONFIG SETTINGS                                                                 //
@@ -79,10 +78,6 @@ android {
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // COMMON FLAGS                                                                                   //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-
-//androidExtensions {
-//  experimental = true
-//}
 
 kotlin {
   experimental {

@@ -12,7 +12,7 @@
     android:roundIcon="@mipmap/ic_launcher_round"
     android:supportsRtl="true"
     android:theme="@style/Theme.DailyForecast">
-    <activity android:name=".features.MainActivity">
+    <activity android:theme="@style/Theme.DailyForecast" android:name=".features.MainActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
 

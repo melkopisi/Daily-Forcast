@@ -6,7 +6,6 @@ ext.deps = [
     'build': [
         'gradle': "com.android.tools.build:gradle:4.2.0",
         'kotlin': "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin",
-        'navSafeArgs': "androidx.navigation:navigation-safe-args-gradle-plugin:$versions.nav_version_ktx"
     ],
 
     ////////////////////////////////////////////////////////////////////////////////////////////
@@ -44,7 +43,7 @@ ext.deps = [
     'rx': [
         'android': "io.reactivex.rxjava2:rxandroid:2.1.1",
         'kotlin': "io.reactivex.rxjava2:rxkotlin:2.4.0",
-        'rxbinding': "com.jakewharton.rxbinding4:rxbinding:$versions.rxbinding"
+        'rxbinding': "com.jakewharton.rxbinding2:rxbinding-kotlin:$versions.rxbinding"
     ],
     'retrofit': [
         'retrofit': "com.squareup.retrofit2:retrofit:$versions.retrofit",
@@ -53,7 +52,6 @@ ext.deps = [
     ],
     'okHttp': [
         'okHttp': "com.squareup.okhttp3:okhttp:$versions.okHttp",
-        'mockwebserver': "com.squareup.okhttp3:mockwebserver:$versions.okHttp",
         'prettyLogger': "com.github.ihsanbal:LoggingInterceptor:$versions.prettyLogger",
     ],
 
@@ -78,5 +76,7 @@ ext.deps = [
         'kotlin': "com.nhaarman:mockito-kotlin:$versions.mockitoKotlin",
         'android': "org.mockito:mockito-android:$versions.mockito"
     ],
-    'androidxJunit': "androidx.test.ext:junit:1.1.0"
+    'androidxJunit': "androidx.test.ext:junit:1.1.0",
+    'mockwebserver': "com.squareup.okhttp3:mockwebserver:$versions.okHttp",
+    'archCoreTest': "androidx.arch.core:core-testing:2.1.0"
 ]

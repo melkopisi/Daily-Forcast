@@ -23,8 +23,8 @@ class ForecastViewModel @Inject constructor(
 ) : BaseViewModel() {
 
   private val _getDailyForecastLiveData =
-    MutableLiveData<Resource<List<DailyForecastUiModel.Forecast>>>()
-  val getDailyForecastLiveData: LiveData<Resource<List<DailyForecastUiModel.Forecast>>> =
+    MutableLiveData<Resource<DailyForecastUiModel>>()
+  val getDailyForecastLiveData: LiveData<Resource<DailyForecastUiModel>> =
     _getDailyForecastLiveData
 
   fun getDailyForecast(cityName: String) {
@@ -34,14 +34,12 @@ class ForecastViewModel @Inject constructor(
       .doOnSubscribe { _getDailyForecastLiveData.setLoading() }
       .subscribe({
         _getDailyForecastLiveData.setSuccess(
-          it.map { forecast ->
-            forecast.mapToDailyForecastUiModel()
-          }
+          it.mapToDailyForecastUiModel()
         )
       }, { throwable ->
         if (throwable is NoRemoteDataException) {
-          if ((throwable.data as List<*>).isNullOrEmpty().not()) {
-            _getDailyForecastLiveData.setLocalSuccess(throwable.data as List<DailyForecastUiModel.Forecast>)
+          if (throwable.data.list.isNullOrEmpty().not()) {
+            _getDailyForecastLiveData.setLocalSuccess(throwable.data.mapToDailyForecastUiModel())
           } else {
             _getDailyForecastLiveData.setError(R.string.no_data_error)
           }
