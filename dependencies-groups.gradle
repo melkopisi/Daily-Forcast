@@ -73,7 +73,6 @@ ext {
   view = Group {
     implementation deps.support.constraint
     implementation deps.support.materialDesign
-    implementation deps.rx.rxbinding
     implementation deps.navigation.navigationFragment
     implementation deps.navigation.navigationUi
     implementation deps.navigation.dynamic
