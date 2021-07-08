@@ -6,7 +6,6 @@ Daily forecast is a simple task : one screen with a search and RecyclerView
 
 ### Technologies
 - RxAndroid and RxKotlin
-- RxBinding
 - LiveData
 - Navigation Component
 - Room
