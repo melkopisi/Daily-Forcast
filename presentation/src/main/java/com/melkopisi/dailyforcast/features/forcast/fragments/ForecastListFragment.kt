@@ -9,6 +9,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.melkopisi.dailyforcast.App
+import com.melkopisi.dailyforcast.R
 import com.melkopisi.dailyforcast.databinding.FragmentForecastListBinding
 import com.melkopisi.dailyforcast.di.presentation.fragment.FragmentSubComponent
 import com.melkopisi.dailyforcast.di.presentation.viewmodel.ViewModelFactoryProvider
@@ -50,7 +51,7 @@ class ForecastListFragment : Fragment() {
   ): View? {
     binding = FragmentForecastListBinding.inflate(inflater, container, false)
     return binding?.root
-    }
+  }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
@@ -94,11 +95,12 @@ class ForecastListFragment : Fragment() {
       LOCAL_SUCCESS -> {
         binding?.progressBar?.isVisible = false
         result.data?.list?.let { adapter.setData(it) }
+        binding?.root?.makeSnackBar(getString(R.string.data_not_accurate), hasError = false) {}
       }
 
       ERROR -> {
         binding?.progressBar?.isVisible = false
-        binding?.root?.makeSnackBar(getString(result.id)) {
+        binding?.root?.makeSnackBar(getString(result.id), hasError = true) {
           viewModel.getDailyForecast(binding?.search?.text.toString())
         }
       }
