@@ -2,6 +2,7 @@
   <string name="app_name">Daily Forecast</string>
 
   <string name="retry">Retry</string>
+  <string name="data_not_accurate">Data is not Accurate</string>
   <!--  errors-->
   <string name="no_data_error">No Data Found</string>
   <string name="network_error">No Network</string>

@@ -6,11 +6,14 @@ import com.melkopisi.dailyforcast.R
 
 fun View.makeSnackBar(
   message: String,
+  hasError: Boolean,
   onClick: () -> Unit
 ) {
   val snackBar = Snackbar.make(this, message, Snackbar.LENGTH_LONG)
   snackBar.apply {
-    setAction(this.context.getString(R.string.retry)) { onClick() }
+    if (hasError) {
+      setAction(this.context.getString(R.string.retry)) { onClick.invoke() }
+    }
     show()
   }
 }
