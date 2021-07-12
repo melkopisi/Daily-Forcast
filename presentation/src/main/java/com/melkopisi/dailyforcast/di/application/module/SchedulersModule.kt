@@ -1,8 +1,8 @@
-package com.melkopisi.dailyforcast.di.presentation.fragment.module
+package com.melkopisi.dailyforcast.di.application.module
 
 import com.humansoftsolution.ugu.common.schedulers.qualifires.Background
 import com.humansoftsolution.ugu.common.schedulers.qualifires.ForeGround
-import com.melkopisi.dailyforcast.di.presentation.scopes.PerFragment
+import com.melkopisi.common.di.application.scope.ApplicationScope
 import dagger.Module
 import dagger.Provides
 import io.reactivex.Scheduler
@@ -13,14 +13,14 @@ import io.reactivex.schedulers.Schedulers
 class SchedulersModule {
 
   @Provides
-  @PerFragment
+  @ApplicationScope
   @ForeGround
   fun providesForegroundScheduler(): Scheduler {
     return AndroidSchedulers.mainThread()
   }
 
   @Provides
-  @PerFragment
+  @ApplicationScope
   @Background
   fun providesBackgroundScheduler(): Scheduler {
     return Schedulers.io()
