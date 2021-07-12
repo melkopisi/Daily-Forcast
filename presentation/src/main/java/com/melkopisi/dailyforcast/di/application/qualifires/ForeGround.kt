@@ -1,4 +1,4 @@
-package com.humansoftsolution.ugu.common.schedulers.qualifires
+package com.melkopisi.dailyforcast.di.application.qualifires
 
 import javax.inject.Qualifier
 
