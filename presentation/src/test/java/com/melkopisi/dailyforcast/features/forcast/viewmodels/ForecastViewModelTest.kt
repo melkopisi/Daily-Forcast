@@ -8,9 +8,9 @@ import com.melkopisi.dailyforcast.general.ResourceState
 import com.melkopisi.domain.exceptions.NoDataException
 import com.melkopisi.domain.models.DailyForecastModel
 import com.melkopisi.domain.usecases.GetDailyForecastUseCase
-import com.melkopisi.domain.utils.RxImmediateSchedulerRule
 import com.nhaarman.mockito_kotlin.any
 import io.reactivex.Single
+import io.reactivex.schedulers.Schedulers
 import org.junit.After
 import org.junit.Assert
 import org.junit.Before
@@ -26,7 +26,6 @@ import org.mockito.junit.MockitoJUnitRunner
 @RunWith(MockitoJUnitRunner::class)
 class ForecastViewModelTest {
   @get:Rule var instantExecutorRule = InstantTaskExecutorRule()
-  @get:Rule var rxImmediateSchedulerRule = RxImmediateSchedulerRule()
 
   private lateinit var forecastViewModel: ForecastViewModel
 
@@ -38,7 +37,8 @@ class ForecastViewModelTest {
 
   @Before
   fun setup() {
-    forecastViewModel = ForecastViewModel(getDailyForecastUseCase)
+    forecastViewModel =
+      ForecastViewModel(getDailyForecastUseCase, Schedulers.trampoline(), Schedulers.trampoline())
   }
 
   @After

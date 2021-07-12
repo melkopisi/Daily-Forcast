@@ -1,4 +1,4 @@
-package com.melkopisi.dailyforcast.di.presentation.fragment.module
+package com.melkopisi.dailyforcast.di.application.module
 
 import androidx.lifecycle.ViewModel
 import com.melkopisi.dailyforcast.di.presentation.scopes.ViewModelKey

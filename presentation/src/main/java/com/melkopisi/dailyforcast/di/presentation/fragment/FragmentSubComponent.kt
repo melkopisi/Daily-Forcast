@@ -1,7 +1,7 @@
 package com.melkopisi.dailyforcast.di.presentation.fragment
 
 import android.content.Context
-import com.melkopisi.dailyforcast.di.presentation.fragment.module.FragmentViewModelModule
+import com.melkopisi.dailyforcast.di.application.module.FragmentViewModelModule
 import com.melkopisi.dailyforcast.di.presentation.scopes.PerFragment
 import com.melkopisi.dailyforcast.features.forcast.fragments.ForecastListFragment
 import dagger.BindsInstance
