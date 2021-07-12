@@ -2,6 +2,8 @@ package com.melkopisi.dailyforcast.features.forcast.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.humansoftsolution.ugu.common.schedulers.qualifires.Background
+import com.humansoftsolution.ugu.common.schedulers.qualifires.ForeGround
 import com.melkopisi.dailyforcast.R
 import com.melkopisi.dailyforcast.features.forcast.mappers.mapToDailyForecastUiModel
 import com.melkopisi.dailyforcast.features.forcast.models.DailyForecastUiModel
@@ -14,12 +16,13 @@ import com.melkopisi.dailyforcast.general.extensions.setSuccess
 import com.melkopisi.domain.exceptions.NoDataException
 import com.melkopisi.domain.exceptions.NoRemoteDataException
 import com.melkopisi.domain.usecases.GetDailyForecastUseCase
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import io.reactivex.Scheduler
 import javax.inject.Inject
 
 class ForecastViewModel @Inject constructor(
-  private val dailyForecastUseCase: GetDailyForecastUseCase
+  private val dailyForecastUseCase: GetDailyForecastUseCase,
+  @Background private val backgroundScheduler: Scheduler,
+  @ForeGround private val foregroundScheduler: Scheduler
 ) : BaseViewModel() {
 
   private val _getDailyForecastLiveData =
@@ -29,8 +32,8 @@ class ForecastViewModel @Inject constructor(
 
   fun getDailyForecast(cityName: String) {
     dailyForecastUseCase(cityName)
-      .subscribeOn(Schedulers.io())
-      .observeOn(AndroidSchedulers.mainThread())
+      .subscribeOn(backgroundScheduler)
+      .observeOn(foregroundScheduler)
       .doOnSubscribe { _getDailyForecastLiveData.setLoading() }
       .subscribe({
         _getDailyForecastLiveData.setSuccess(
