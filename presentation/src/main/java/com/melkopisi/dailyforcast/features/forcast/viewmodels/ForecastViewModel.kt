@@ -2,9 +2,9 @@ package com.melkopisi.dailyforcast.features.forcast.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.humansoftsolution.ugu.common.schedulers.qualifires.Background
-import com.humansoftsolution.ugu.common.schedulers.qualifires.ForeGround
 import com.melkopisi.dailyforcast.R
+import com.melkopisi.dailyforcast.di.application.qualifires.Background
+import com.melkopisi.dailyforcast.di.application.qualifires.ForeGround
 import com.melkopisi.dailyforcast.features.forcast.mappers.mapToDailyForecastUiModel
 import com.melkopisi.dailyforcast.features.forcast.models.DailyForecastUiModel
 import com.melkopisi.dailyforcast.general.BaseViewModel

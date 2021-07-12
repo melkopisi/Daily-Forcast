@@ -1,8 +1,8 @@
 package com.melkopisi.dailyforcast.di.application.module
 
-import com.humansoftsolution.ugu.common.schedulers.qualifires.Background
-import com.humansoftsolution.ugu.common.schedulers.qualifires.ForeGround
 import com.melkopisi.common.di.application.scope.ApplicationScope
+import com.melkopisi.dailyforcast.di.application.qualifires.Background
+import com.melkopisi.dailyforcast.di.application.qualifires.ForeGround
 import dagger.Module
 import dagger.Provides
 import io.reactivex.Scheduler
